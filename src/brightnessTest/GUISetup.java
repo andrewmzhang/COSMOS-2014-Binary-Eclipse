@@ -5,6 +5,7 @@
 package brightnessTest;
 
 import java.awt.BorderLayout;
+
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -35,8 +36,6 @@ public class GUISetup extends JFrame{
 	
 	//These are all some objects and variables...
 	
-	static Star1Brightness star1 = new Star1Brightness();
-	static Star2Brightness star2 = new Star2Brightness();
 	//This is the Icon of the program
 	ImageIcon img = new ImageIcon(getClass().getResource("curve.png"));
 	
@@ -65,8 +64,8 @@ public class GUISetup extends JFrame{
 	private JLabel creditLabel2 = new JLabel("Louis Lu");
 	private JLabel creditLabel3 = new JLabel("in COSMOS");
 	
-	public static String filename="Test.jpg";
-	public static String dir="C:/Eclipsing Binaries Light Curves";
+	public static String filename="mmm.jpg";
+	public static String dir="/home/caesar/JavaWD";
 	
 	//Star1
 	private JLabel star1Label = new JLabel("Star 1 Information:");
@@ -226,7 +225,6 @@ public class GUISetup extends JFrame{
 	}
 	public class browseFolderBtn implements ActionListener{
 		//Opens up a browsing window to select directory for the graph
-		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			JFileChooser fc = new JFileChooser();
 			fc.setFileFilter(new FileNameExtensionFilter("Image Files", ".jpg"));
@@ -249,7 +247,6 @@ public class GUISetup extends JFrame{
 		public thread1(){
 		}
 
-		@Override
 		public void run() {
 			BrightnessTest.generateGraph();
 			

@@ -21,14 +21,14 @@ public class BrightnessTest {
 	static GUISetup go = new GUISetup();
 	
 	//This is the speed at which how fast the star is moving, due to time limit, I never got to figure out orbits; I assumed the orbit is perfectly circular
-	static double speed = 5;
+	static final double speed = 5;
 	static double totalSum = 0;
 	
 	static double sum1;
 	static double sum2;
 	
-	static Star1Brightness star1 = new Star1Brightness();
-	static Star2Brightness star2 = new Star2Brightness();
+	static Star1Brightness star1;
+	static Star2Brightness star2;
 	
 	static double[] star1Heights;
 	static double[] star2Heights;
@@ -134,7 +134,9 @@ public class BrightnessTest {
 		 * What this method does is that it figures out the eclipse time or a quarter of the period in this case
 		 */
 		int eclipseCounter=0;
-		for(startingPoint=0;endingPoint<2*star1.radius;startingPoint=startingPoint+speed){
+		endingPoint = 0;
+		
+		for(startingPoint=0; endingPoint<2*star1.radius; startingPoint=startingPoint+speed){
 			if(startingPoint<=2*star2.radius){
 				endingPoint = 0;
 			}
@@ -158,12 +160,17 @@ public class BrightnessTest {
 		 * The basic math behind this is that I am trying to figure out which slice is being covered. If you...
 		 * ...are interested in this, please check the code in this method.
 		 */
-		counter=0;
+		star1 = new Star1Brightness();
+		star2 = new Star2Brightness();
 		
-		double counterPhase=0;
+		counter = 0;
 		
-		sum1=star1.calc(1000,1000,go.star1Radius,go.star1Temp);
-		sum2=star2.calc(1000,1000,go.star2Radius,go.star2Temp);
+		double counterPhase = 0;
+		
+		sum1=star1.calc(1000, 1000, go.star1Radius, go.star1Temp);
+		sum2=star2.calc(1000, 1000, go.star2Radius, go.star2Temp);
+		System.out.println(go.star1Radius);
+		System.out.println(go.star2Temp);
 		
 		star1Heights = new double[star1.slices];
 		star2Heights = new double[star2.slices];
@@ -173,8 +180,10 @@ public class BrightnessTest {
 		System.out.println("This may take a while...");
 		setHeightOfSlice();
 		totalSum = star1.sum+star2.sum;
+		System.out.println(totalSum);
 		//System.out.println(sum1);
 		waitingTime = getEclipseTime();
+		System.out.println(waitingTime);
 		for(int loop0=0;loop0<waitingTime/2;loop0++){
 			counterPhase = (double)(counter/(double)(waitingTime*4-1));
 			series.add(counterPhase,totalSum);
@@ -204,12 +213,14 @@ public class BrightnessTest {
 			series.add(counterPhase,eclipse(startingSlice,endingSlice,1));
 			go.percentageLabel.setText(Integer.toString((int)(100*counter/(waitingTime*4-1)))+"%");
 			counter++;
+
 		}
 		for(int loop1=0;loop1<waitingTime;loop1++){
 			counterPhase = (double)(counter/(double)(waitingTime*4-1));
 			series.add(counterPhase,sumTotal);
 			go.percentageLabel.setText(Integer.toString((int)(100*counter/(waitingTime*4-1)))+"%");
 			counter++;
+
 		}
 		endingPoint = 0;
 		for(startingPoint=0;endingPoint<2*star2.radius;startingPoint=startingPoint+speed){
@@ -234,12 +245,14 @@ public class BrightnessTest {
 			series.add(counterPhase,eclipse(startingSlice,endingSlice,2));
 			go.percentageLabel.setText(Integer.toString((int)(100*counter/(waitingTime*4-1)))+"%");
 			counter++;
+
 		}
 		for(int loop2=0;loop2<waitingTime/2;loop2++){
 			counterPhase = (double)(counter/(double)(waitingTime*4-1));
 			series.add(counterPhase,totalSum);
 			go.percentageLabel.setText(Integer.toString((int)(100*counter/(waitingTime*4-1)))+"%");
 			counter++;
+
 		}
 		go.percentageLabel.setText("Finalizing...");
 		
