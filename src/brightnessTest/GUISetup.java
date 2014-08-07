@@ -6,6 +6,7 @@ package brightnessTest;
 
 import java.awt.BorderLayout;
 
+
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -17,6 +18,7 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintStream;
 
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
@@ -30,13 +32,19 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.JScrollPane;
+import javax.swing.text.BadLocationException;
+
 
 @SuppressWarnings("serial")
-public class GUISetup extends JFrame{
+public class GUISetup extends JFrame {
 	
+	
+
 	//These are all some objects and variables...
 	
 	//This is the Icon of the program
+	
 	ImageIcon img = new ImageIcon(getClass().getResource("curve.png"));
 	
 	private JPanel inputPanel = new JPanel(new GridBagLayout());
@@ -62,10 +70,18 @@ public class GUISetup extends JFrame{
 	
 	private JLabel creditLabel1 = new JLabel("Created by");
 	private JLabel creditLabel2 = new JLabel("Louis Lu");
-	private JLabel creditLabel3 = new JLabel("in COSMOS");
+	
+	private JLabel creditLabel3 = new JLabel("Debugged by");
+	private JLabel creditLabel4 = new JLabel("Andrew Zhang");
+	
+	private JLabel creditLabel5 = new JLabel("in COSMOS");
+	
 	
 	public static String filename="mmm.jpg";
 	public static String dir="/home/caesar/JavaWD";
+	
+	private JLabel sliceLabel = new JLabel("Slices/Polygons:");
+	private JTextField sliceNumText = new JTextField("1000",10);
 	
 	//Star1
 	private JLabel star1Label = new JLabel("Star 1 Information:");
@@ -91,14 +107,27 @@ public class GUISetup extends JFrame{
 	public int imageWidth=0;
 	public int imageHeight=0;
 	
+	public int sliceNum = 0;
+	
 	
 	BufferedImage lightCurve;
 
 	JLabel picLabel;
 	
+	private JTextArea consoleOut;
+	
 	public GUISetup(){
 
+		
 		super("Eclipsing Binaries Light Curve Generator");//Name of the program
+		consoleOut = new JTextArea(10,18);
+		consoleOut.setEditable(false);
+		PrintStream printStream = new PrintStream(new TextHandler(consoleOut));
+		System.setOut(printStream);
+		System.setErr(printStream);
+		
+		
+		
 		setLayout(new BorderLayout());
 		//Adding some objects
 		add(inputPanel, BorderLayout.WEST);
@@ -135,6 +164,10 @@ public class GUISetup extends JFrame{
 		inputPanel.add(imageWidthText,c);
 		c.gridy++;
 		inputPanel.add(imageHeightText,c);
+		c.gridy++;
+		inputPanel.add(sliceLabel,c);
+		c.gridy++;
+		inputPanel.add(sliceNumText,c);
 		percentageLabel.setFont(new Font("SansSerif", Font.PLAIN, 30));
 		percentageLabel.setForeground(Color.BLUE);
 		c.gridy++;
@@ -153,6 +186,12 @@ public class GUISetup extends JFrame{
 		inputPanel.add(creditLabel2,c);
 		c.gridy++;
 		inputPanel.add(creditLabel3,c);
+		c.gridy++;
+		inputPanel.add(creditLabel4,c);
+		c.gridy++;
+		inputPanel.add(creditLabel5,c);
+		c.gridy++;
+		inputPanel.add(new JScrollPane(consoleOut),c);
 		
 		generateBtn.addActionListener(new generateGraphBtn());//Click button to start generate graph
 		
@@ -191,7 +230,17 @@ public class GUISetup extends JFrame{
 		/*
 		 * This method takes in values and starts generating the image in a new thread
 		 */
+		
+		
 		public void actionPerformed(ActionEvent e){
+			// Clears Window
+			try {
+				consoleOut.getDocument().remove(0, 
+					consoleOut.getDocument().getLength());
+				} catch (BadLocationException ex) {
+					ex.printStackTrace();
+				}
+			
 			try{
 				if(!star1TempText.getText().equals("")){
 					star1Temp = Integer.parseInt(star1TempText.getText());
@@ -210,6 +259,10 @@ public class GUISetup extends JFrame{
 				}
 				if(!imageHeightText.getText().equals("")){
 					imageHeight = Integer.parseInt(imageHeightText.getText());
+				}
+				if(!sliceNumText.getText().equals("")){
+					if(Integer.parseInt(sliceNumText.getText()) == 1){throw new NumberFormatException();}
+					sliceNum = Integer.parseInt(sliceNumText.getText()); 
 				}
 			}catch(NumberFormatException nfe){
 				JOptionPane.showMessageDialog(null, "Invalid Input");

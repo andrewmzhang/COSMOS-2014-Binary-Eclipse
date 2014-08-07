@@ -19,12 +19,11 @@ public class Star1Brightness {
 	double radius=0;
 	int hemiSlices = 0;
 	double angleStep=0;
-	
+	double sum=0;
+
 	double mass=0;
 	
 	double[][] component;
-	
-	double sum=0;
 	
 	public Star1Brightness(){
 	}
@@ -100,8 +99,7 @@ public class Star1Brightness {
 				component[counterSlice][counterPoly] = magnitude*(Math.sin(angleH))*(Math.cos(angleV));
 				counterPoly++;
 			}
-		}
-		
+		}		
 		//sum up all the components
 		for(int loopSlice=0;loopSlice<slices;loopSlice++){
 			for(int loopSides=0;loopSides<(polygonSides/2+1);loopSides++){

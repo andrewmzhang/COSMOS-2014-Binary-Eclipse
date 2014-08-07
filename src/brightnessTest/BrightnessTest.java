@@ -28,7 +28,7 @@ public class BrightnessTest {
 	static double sum2;
 	
 	static Star1Brightness star1;
-	static Star2Brightness star2;
+	static Star1Brightness star2;
 	
 	static double[] star1Heights;
 	static double[] star2Heights;
@@ -53,7 +53,7 @@ public class BrightnessTest {
 		//There isn't really anything in main method, much of the interactions are in GUISetup class
 		//setting up GUI
 		go.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		go.setSize(900, 550);
+		go.setSize(1132,700);
 		go.setIconImage(go.img.getImage());
 		go.setVisible(true);
 	}
@@ -161,16 +161,16 @@ public class BrightnessTest {
 		 * ...are interested in this, please check the code in this method.
 		 */
 		star1 = new Star1Brightness();
-		star2 = new Star2Brightness();
+		star2 = new Star1Brightness();
 		
 		counter = 0;
 		
 		double counterPhase = 0;
-		
-		sum1=star1.calc(1000, 1000, go.star1Radius, go.star1Temp);
-		sum2=star2.calc(1000, 1000, go.star2Radius, go.star2Temp);
-		System.out.println(go.star1Radius);
-		System.out.println(go.star2Temp);
+		System.out.println("Starting Light Total Calculation");
+		sum1=star1.calc(go.sliceNum, go.sliceNum, go.star1Radius, go.star1Temp);
+		System.out.println("Star One Complete!");
+		sum2=star2.calc(go.sliceNum, go.sliceNum, go.star2Radius, go.star2Temp);
+		System.out.println("Star Two Complete!");
 		
 		star1Heights = new double[star1.slices];
 		star2Heights = new double[star2.slices];
@@ -178,12 +178,13 @@ public class BrightnessTest {
 		XYSeries series = new XYSeries("XYGraph");
 		
 		System.out.println("This may take a while...");
+		System.out.println("Calculating Heights");
 		setHeightOfSlice();
 		totalSum = star1.sum+star2.sum;
-		System.out.println(totalSum);
-		//System.out.println(sum1);
+		
+		System.out.println("Calculating Eclipse Time...");
 		waitingTime = getEclipseTime();
-		System.out.println(waitingTime);
+		System.out.println("Calculating Plot Points...");
 		for(int loop0=0;loop0<waitingTime/2;loop0++){
 			counterPhase = (double)(counter/(double)(waitingTime*4-1));
 			series.add(counterPhase,totalSum);
