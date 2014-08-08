@@ -65,7 +65,7 @@ Developing
 
 	Andrew is currently working:
 		Python version of the java code
-		jar version of the java code
+		jar version of the java code [done]
 		exe version of the java code
 		Fixing Bugs in the java code (see below)
 
@@ -73,8 +73,8 @@ Developing
 Known Bugs
 ===============
 	
-	Possible Math function incorrect in determining star slice height
-
+	There are no currently known bugs. If you find one, or have questions, please 
+	email andrewmzhang12345@gmail.com or nickasds@hotmail.com
 
 ===============
 BUG FIXES
@@ -83,5 +83,7 @@ BUG FIXES
 8/6/14: Fixed Graph generating negative percent when run twice
 
 8/6/14: Fixed Graph generating the different graph upon hitting generate twice
+
+8/7/14: Fixed Mathematical Error that caused incorrect slice height generation
 
 

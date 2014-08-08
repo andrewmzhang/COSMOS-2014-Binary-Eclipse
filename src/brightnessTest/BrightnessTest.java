@@ -67,7 +67,7 @@ public class BrightnessTest {
 		
 		sumTotal = star1.sum+star2.sum;
 		if(starCovered==1){
-			for(int i=sliceStart;i>=sliceEnd;i--){
+			for(int i=sliceStart;i>=sliceEnd;i--){ //////////////////////////
 				for(int sideIndex=0;sideIndex<star1.polygonSides/2+1;sideIndex++){
 					star1.polygonSideLength = 2*Math.PI*getHeightOfSlice2(sliceAssignment1[Math.abs(i-sliceStart)])/star1.polygonSides;
 					currentHeight = star1.polygonSideLength*Math.sin(Math.abs(star1.innerAngle-sideIndex*Math.toRadians(star1.angleStep)));
@@ -111,20 +111,20 @@ public class BrightnessTest {
 		int xCoord;
 		for(int sliceIndex1=0; sliceIndex1<star1.slices;sliceIndex1++){
 			xCoord = Math.abs(star1.hemiSlices-sliceIndex1);
-			if(xCoord==0){
+			if(xCoord == 0){
 				star1Heights[sliceIndex1]=star1.radius;
-			}else{
-				star1Heights[sliceIndex1] = Math.sqrt((star1.radius)*(star1.radius)-Math.pow((star1.radius-(star1.radius/xCoord)), 2));
+			}else{		
+				star1Heights[sliceIndex1] = Math.sqrt((star1.radius)*(star1.radius)-Math.pow((((double)xCoord/star1.hemiSlices)*star1.radius), 2));
+				
 			}
 		}
-		
 		for(int sliceIndex2=0; sliceIndex2<star2.slices;sliceIndex2++){
 			
 			xCoord = Math.abs(star2.hemiSlices-sliceIndex2);
 			if(xCoord==0){
 				star2Heights[sliceIndex2]=star2.radius;
 			}else{
-				star2Heights[sliceIndex2] = Math.sqrt((star2.radius)*(star2.radius)-Math.pow((star2.radius-(star2.radius/xCoord)), 2));
+				star2Heights[sliceIndex2] = Math.sqrt((star2.radius)*(star2.radius)-Math.pow((((double)xCoord/star2.hemiSlices)*star2.radius), 2));
 			}
 		}
 	}

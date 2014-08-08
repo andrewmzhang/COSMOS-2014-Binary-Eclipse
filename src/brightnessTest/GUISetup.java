@@ -77,8 +77,8 @@ public class GUISetup extends JFrame {
 	private JLabel creditLabel5 = new JLabel("in COSMOS");
 	
 	
-	public static String filename="mmm.jpg";
-	public static String dir="/home/caesar/JavaWD";
+	public static String filename="Test.jpg";
+	public static String dir="C:";
 	
 	private JLabel sliceLabel = new JLabel("Slices/Polygons:");
 	private JTextField sliceNumText = new JTextField("1000",10);
