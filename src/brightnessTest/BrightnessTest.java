@@ -1,6 +1,9 @@
 /*
  * Made by Louis Lu in COSMOS for simulating light curves in research of Eclipsing Binaries
  * There is some very interesting geometry in these four classes
+ * 
+ * This section has been revised and debugged by Andrew Zhang. 
+ * Math has been corrected, UI improved, and bugs fixed!
  */
 package brightnessTest;
 
@@ -64,7 +67,7 @@ public class BrightnessTest {
 		 * The math behind this is quite interesting, it's quite hard to explain all these in a comment, but it's...
 		 * ...definitely worth checking out.
 		 */
-		
+
 		sumTotal = star1.sum+star2.sum;
 		if(starCovered==1){
 			for(int i=sliceStart;i>=sliceEnd;i--){ //////////////////////////
@@ -180,11 +183,14 @@ public class BrightnessTest {
 		System.out.println("This may take a while...");
 		System.out.println("Calculating Heights");
 		setHeightOfSlice();
+		
 		totalSum = star1.sum+star2.sum;
 		
 		System.out.println("Calculating Eclipse Time...");
 		waitingTime = getEclipseTime();
 		System.out.println("Calculating Plot Points...");
+		star1.arrayCalc();
+		star2.arrayCalc();
 		for(int loop0=0;loop0<waitingTime/2;loop0++){
 			counterPhase = (double)(counter/(double)(waitingTime*4-1));
 			series.add(counterPhase,totalSum);
