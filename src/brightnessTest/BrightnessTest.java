@@ -169,35 +169,37 @@ public class BrightnessTest {
 		counter = 0;
 		
 		double counterPhase = 0;
-		System.out.println("Starting Light Total Calculation");
 		sum1=star1.calc(go.sliceNum, go.sliceNum, go.star1Radius, go.star1Temp);
-		System.out.println("Star One Complete!");
 		sum2=star2.calc(go.sliceNum, go.sliceNum, go.star2Radius, go.star2Temp);
-		System.out.println("Star Two Complete!");
+		System.out.println("Calculating Star 1 Array!");
+		star1.arrayCalc();
+		System.out.println("Calculating Star 2 Array!");
+		star2.arrayCalc();
+		
 		
 		star1Heights = new double[star1.slices];
 		star2Heights = new double[star2.slices];
 		
 		XYSeries series = new XYSeries("XYGraph");
 		
-		System.out.println("This may take a while...");
-		System.out.println("Calculating Heights");
+
 		setHeightOfSlice();
 		
 		totalSum = star1.sum+star2.sum;
 		
-		System.out.println("Calculating Eclipse Time...");
+	//	System.out.println("Calculating Eclipse Time...");
 		waitingTime = getEclipseTime();
 		System.out.println("Calculating Plot Points...");
-		star1.arrayCalc();
-		star2.arrayCalc();
+	//	System.out.println("This may take a while...");
+
+
 		for(int loop0=0;loop0<waitingTime/2;loop0++){
 			counterPhase = (double)(counter/(double)(waitingTime*4-1));
 			series.add(counterPhase,totalSum);
 			go.percentageLabel.setText(Integer.toString((int)(100*counter/(waitingTime*4-1)))+"%");
 			counter++;
 		}
-		
+		System.out.println("12.5% Start First Dip!");
 		endingPoint=0;
 		for(startingPoint=0;endingPoint<2*star1.radius;startingPoint=startingPoint+speed){
 			if(startingPoint<=2*star2.radius){
@@ -222,6 +224,7 @@ public class BrightnessTest {
 			counter++;
 
 		}
+		System.out.println("37.5% First Dip Done!");
 		for(int loop1=0;loop1<waitingTime;loop1++){
 			counterPhase = (double)(counter/(double)(waitingTime*4-1));
 			series.add(counterPhase,sumTotal);
@@ -230,6 +233,7 @@ public class BrightnessTest {
 
 		}
 		endingPoint = 0;
+		System.out.println("62.5% Start Second Dip!");
 		for(startingPoint=0;endingPoint<2*star2.radius;startingPoint=startingPoint+speed){
 			if(startingPoint<=2*star1.radius){
 				endingPoint = 0;
@@ -254,6 +258,7 @@ public class BrightnessTest {
 			counter++;
 
 		}
+		System.out.println("87.5% Second Dip Done!");
 		for(int loop2=0;loop2<waitingTime/2;loop2++){
 			counterPhase = (double)(counter/(double)(waitingTime*4-1));
 			series.add(counterPhase,totalSum);
@@ -261,6 +266,7 @@ public class BrightnessTest {
 			counter++;
 
 		}
+		System.out.println("100% Calculation Done!");
 		go.percentageLabel.setText("Finalizing...");
 		
 		XYSeriesCollection dataset = new XYSeriesCollection(); //Initialize the graph
@@ -282,7 +288,7 @@ public class BrightnessTest {
 			//Create the chart
 			ChartUtilities.saveChartAsJPEG(new File(GUISetup.dir+"/"+GUISetup.filename), chart, go.imageWidth, go.imageHeight);
 		} catch (IOException e) {
-			System.err.println("Problem occurred creating chart.");
+			System.err.println("Error: Check save location");
 			go.percentageLabel.setText("Failed to generate graph"); //opps a problem
 			go.generateBtn.setEnabled(true);
 			go.browseBtn.setEnabled(true);

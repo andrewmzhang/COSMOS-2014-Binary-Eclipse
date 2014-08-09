@@ -1,6 +1,9 @@
 /*
  * Made by Louis Lu in COSMOS for simulating light curves in research of Eclipsing Binaries
  * There is some very interesting geometry in these four classes
+ * 
+ * This section has been revised and debugged by Andrew Zhang. 
+ * Math has been corrected, UI improved, and bugs fixed!
  */
 package brightnessTest;
 
@@ -120,7 +123,7 @@ public class GUISetup extends JFrame {
 
 		
 		super("Eclipsing Binaries Light Curve Generator");//Name of the program
-		consoleOut = new JTextArea(10,18);
+		consoleOut = new JTextArea(11,18);
 		consoleOut.setEditable(false);
 		PrintStream printStream = new PrintStream(new TextHandler(consoleOut));
 		System.setOut(printStream);
@@ -173,7 +176,7 @@ public class GUISetup extends JFrame {
 		c.gridy++;
 		inputPanel.add(imageDest,c);
 		c.gridy++;
-		imageDir.append(dir + "/" + filename);
+		imageDir.append(dir + "\\" + filename);
 		imageDir.setLineWrap(true);
 		imageDir.setEditable(false);
 		inputPanel.add(imageDir,c);
