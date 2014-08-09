@@ -88,6 +88,6 @@ BUG FIXES
 
 8/8/14: Improved a Math equation. Turns out dividing totalMagnitude by 4 yields slightly more accurate 
 		values than adding all the vector components of all the faces of a polygon-sphere, whilst kind of
-		avoiding Trignometry and complex loops (Andy is very proud of figuring this simplification) 
+		avoiding Trignometry and complex loops (Andy is very proud of figuring out this simplification) 
 
 
