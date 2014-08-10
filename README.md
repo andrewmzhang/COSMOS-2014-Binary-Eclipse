@@ -89,7 +89,11 @@ Developing
 Known Bugs
 ===============
 	
-	There are no currently known bugs. If you find one, or have questions, please 
+	Browse button does not work for MAC OSX
+	Program will not load input boxes correctly on laptops with small screens. 
+	
+	
+	If you find a bug, or have questions, please 
 	email andrewmzhang12345@gmail.com or nickasds@hotmail.com
 
 ===============
