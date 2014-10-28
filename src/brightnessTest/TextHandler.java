@@ -12,15 +12,15 @@ import java.io.OutputStream;
 import javax.swing.JTextArea;
 
 public class TextHandler extends OutputStream {
-	private JTextArea OutGoing;
-	
-	public TextHandler(JTextArea textArea) {
-		this.OutGoing = textArea;
-	}
-	
-	@Override
-	public void write(int e) throws IOException {
-		OutGoing.append(String.valueOf((char)e));
-		OutGoing.setCaretPosition(OutGoing.getDocument().getLength());
-	}
+    private JTextArea OutGoing;
+
+    public TextHandler(JTextArea textArea) {
+        this.OutGoing = textArea;
+    }
+
+    @Override
+    public void write(int e) throws IOException {
+        OutGoing.append(String.valueOf((char) e));
+        OutGoing.setCaretPosition(OutGoing.getDocument().getLength());
+    }
 }
