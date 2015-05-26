@@ -89,10 +89,10 @@ Developing
 Known Bugs
 ===============
 	
-	My Lord the math!! It's horribly wrong! Hopefully ill get around to fixing it, but its pretty bad.
+	There are some minor issues in the math, I will get around to fixing them come summertime. Might just be a resolution error. Hard to tell without an indepth analysis.
 	
 	Browse button does not work for MAC OSX
-	Program will not load input boxes correctly on laptops with small screens. 
+	Program will not load input boxes correctly on laptops with small screens (should be fixed, but I do not have a mac to test this on...) 
 	
 	
 	If you find a bug, or have questions, please 
