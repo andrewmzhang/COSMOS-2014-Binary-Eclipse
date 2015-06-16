@@ -4,7 +4,7 @@ Authors
 	
 	(Coded at COSMOS UCSC '14)
 	Original Java Code by Louis Lu (nickasds@hotmail.com)
-	Debug, Revised, and Improved by Andrew Zhang (andrewmzhang12345@gmail.com)
+	Debug and Revised by Andrew Zhang (andrewmzhang12345@gmail.com)
 
 ===============
 Description
@@ -108,8 +108,6 @@ BUG FIXES
 
 8/7/14: Fixed Mathematical Error that caused incorrect slice height generation
 
-8/8/14: Improved a Math equation. Turns out dividing totalMagnitude by 4 yields slightly more accurate 
-		values than adding all the vector components of all the faces of a polygon-sphere, whilst kind of
-		avoiding Trignometry and complex loops (Andy is very proud of figuring out this simplification) 
+ 
 
 
