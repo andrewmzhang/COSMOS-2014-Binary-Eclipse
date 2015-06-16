@@ -89,7 +89,8 @@ Developing
 Known Bugs
 ===============
 	
-	There are some minor issues in the math, I will get around to fixing them come summertime. Might just be a resolution error. Hard to tell without an indepth analysis.
+	There are some minor issues in the math, forgot to take into account one dimension in the sliced sphere.
+	It should be a sliced dodecahedron-like structure.
 	
 	Browse button does not work for MAC OSX
 	Program will not load input boxes correctly on laptops with small screens (should be fixed, but I do not have a mac to test this on...) 
